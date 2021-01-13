@@ -1,6 +1,7 @@
-include <pieceQuantik.php>;
+
 
 <?php
+    include("PieceQuantik.php");
 
     class PlateauQuantik
     {
@@ -17,27 +18,27 @@ include <pieceQuantik.php>;
             $this->cases = array(array(null,null,null,null), array(null,null,null,null), array(null,null,null,null), array(null,null,null,null));
         }
 
-        public function getPieces(int $numRow, int $numCol)
+        public function getPieces(int $numRow, int $numCol):PieceQuantik
         {
             return $this->cases[$numRow][$numCol];
         }
 
-        public function setPiece(int $numRow, int $numCol, PieceQuantik $p)
+        public function setPiece(int $numRow, int $numCol, PieceQuantik $p):void
         {
             $this->cases[$numRow][$numCol] = $p;
         }
 
-        public function getRow(int $numRow)
+        public function getRow(int $numRow):array
         {
             return array($this->cases[$numRow][0], $this->cases[$numRow][1], $this->cases[$numRow][2], $this->cases[$numRow][3]);
         }
 
-        public function getCol(int $numCol)
+        public function getCol(int $numCol):array
         {
             return array($this->cases[0][$numCol], $this->cases[1][$numCol], $this->cases[2][$numCol], $this->cases[3][$numCol]);
         }
 
-        public function getCorner(int $dir)
+        public function getCorner(int $dir):array
         {
             if($dir == PlateauQuantik::NW)
                 return array($this->cases[0][0], $this->cases[0][1], $this->cases[1][0], $this->cases[1][1]);
@@ -49,40 +50,79 @@ include <pieceQuantik.php>;
                 return array($this->cases[2][2], $this->cases[2][3], $this->cases[3][2], $this->cases[3][3]);
         }
 
-        public function __toString()
+        public function __toString():String
         {
             $ret = "";
             for ($i=0; $i < 4; $i++)
             { 
+                $ret.="{";
                 for ($j=0; $j < 4; $j++)
-                    $ret.="{".$this->cases[$i][$j].", ";
+                    $ret.=$this->cases[$i][$j].", ";
                 $ret.="}\n";
             }
             
             return $ret;
         }
 
-        public function getCornerFromCorner(int $numRow, int $numCol)
+        public static function getCornerFromCoord(int $numRow, int $numCol):int
         {
             $ret = "";
             if($numRow == 0 || $numRow == 1)
-                $ret."N";
+                $ret.="N";
             else
-                $ret."S";
+                $ret.="S";
 
             if($numCol == 0 || $numCol == 1)
-                $ret."W";
+                $ret.="W";
             else
-                $ret."E";
+                $ret.="E";
 
-            if(str_contains($ret, "NW"))
+            if(strpos($ret, "NW"))
                 return PlateauQuantik::NW;
-            else if(str_contains($ret, "NE"))
+            else if(strpos($ret, "NE"))
                 return PlateauQuantik::NE;
-            else if(str_contains($ret, "SW"))
+            else if(strpos($ret, "SW"))
                 return PlateauQuantik::SW;
-            else if(str_contains($ret, "SE"))
+            else if(strpos($ret, "SE"))
                 return PlateauQuantik::SE;
+            else return -1;
         }
     }
 ?>
+
+<html>
+    <head><title>PlateauQuantik</title></head>
+    <body>
+            <?php
+                $p  = new PlateauQuantik();
+
+                $p->setPiece(0, 0, PieceQuantik::initBlackCube());
+                $p->setPiece(0, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(0, 2, PieceQuantik::initWhiteCone());
+                $p->setPiece(0, 3, PieceQuantik::initVoid());
+
+                $p->setPiece(1, 0, PieceQuantik::initBlackCube());
+                $p->setPiece(1, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(1, 2, PieceQuantik::initWhiteCone());
+                $p->setPiece(1, 3, PieceQuantik::initVoid());
+
+                $p->setPiece(2, 0, PieceQuantik::initBlackCube());
+                $p->setPiece(2, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(2, 2, PieceQuantik::initWhiteCone());
+                $p->setPiece(2, 3, PieceQuantik::initVoid());
+
+                $p->setPiece(3, 0, PieceQuantik::initBlackCube());
+                $p->setPiece(3, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(3, 2, PieceQuantik::initWhiteCone());
+                $p->setPiece(3, 3, PieceQuantik::initVoid());
+
+                echo($p->__toString()."\n");
+
+
+                echo($p->getCornerFromCoord(0,1));
+                echo($p->getCornerFromCoord(2,2));
+                echo($p->getCornerFromCoord(2,3));
+                echo($p->getCornerFromCoord(3,3));
+            ?>
+    </body>
+</html>
