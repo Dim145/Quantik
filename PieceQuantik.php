@@ -62,7 +62,8 @@ class PieceQuantik
 
     private function __construct(int $forme, int $couleur)
     {
-        $this->forme = $forme;
+        $this->forme   = $forme;
+        $this->couleur = $couleur;
     }
 
     public function getForme(): int
