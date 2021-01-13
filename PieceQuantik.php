@@ -102,3 +102,11 @@ class PieceQuantik
         return $res;
     }
 }
+
+?>
+
+<html>
+    <body>
+        <h1>Test ok</h1>
+    </body>
+</html>

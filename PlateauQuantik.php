@@ -1,5 +1,3 @@
-
-
 <?php
     include("PieceQuantik.php");
 
@@ -60,7 +58,7 @@
                     $ret.=$this->cases[$i][$j].", ";
                 $ret.="}\n";
             }
-            
+
             return $ret;
         }
 
