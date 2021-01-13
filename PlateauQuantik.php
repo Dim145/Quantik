@@ -58,7 +58,7 @@
                 $ret.="{";
                 for ($j=0; $j < 4; $j++)
                     $ret.=$this->cases[$i][$j].", ";
-                $ret.="}\n";
+                $ret.="}<br />";
             }
             
             return $ret;
@@ -77,13 +77,14 @@
             else
                 $ret.="E";
 
-            if(strpos($ret, "NW"))
+
+            if(strpos($ret, "NW") !== false)
                 return PlateauQuantik::NW;
-            else if(strpos($ret, "NE"))
+            else if(strpos($ret, "NE") !== false)
                 return PlateauQuantik::NE;
-            else if(strpos($ret, "SW"))
+            else if(strpos($ret, "SW") !== false)
                 return PlateauQuantik::SW;
-            else if(strpos($ret, "SE"))
+            else if(strpos($ret, "SE") !== false)
                 return PlateauQuantik::SE;
             else return -1;
         }
@@ -97,31 +98,31 @@
                 $p  = new PlateauQuantik();
 
                 $p->setPiece(0, 0, PieceQuantik::initBlackCube());
-                $p->setPiece(0, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(0, 1, PieceQuantik::initWhiteCylindre());
                 $p->setPiece(0, 2, PieceQuantik::initWhiteCone());
                 $p->setPiece(0, 3, PieceQuantik::initVoid());
 
                 $p->setPiece(1, 0, PieceQuantik::initBlackCube());
-                $p->setPiece(1, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(1, 1, PieceQuantik::initBlackCylindre());
                 $p->setPiece(1, 2, PieceQuantik::initWhiteCone());
                 $p->setPiece(1, 3, PieceQuantik::initVoid());
 
                 $p->setPiece(2, 0, PieceQuantik::initBlackCube());
-                $p->setPiece(2, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(2, 1, PieceQuantik::initWhiteSphere());
                 $p->setPiece(2, 2, PieceQuantik::initWhiteCone());
                 $p->setPiece(2, 3, PieceQuantik::initVoid());
 
                 $p->setPiece(3, 0, PieceQuantik::initBlackCube());
-                $p->setPiece(3, 1, PieceQuantik::initBlackCube());
+                $p->setPiece(3, 1, PieceQuantik::initBlackSphere());
                 $p->setPiece(3, 2, PieceQuantik::initWhiteCone());
                 $p->setPiece(3, 3, PieceQuantik::initVoid());
 
-                echo($p->__toString()."\n");
+                echo($p->__toString()."<br />");
 
 
                 echo($p->getCornerFromCoord(0,1));
-                echo($p->getCornerFromCoord(2,2));
-                echo($p->getCornerFromCoord(2,3));
+                echo($p->getCornerFromCoord(2,1));
+                echo($p->getCornerFromCoord(0,3));
                 echo($p->getCornerFromCoord(3,3));
             ?>
     </body>
