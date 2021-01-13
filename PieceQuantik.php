@@ -37,22 +37,22 @@
 
         public static function initWhiteCylindre():PieceQuantik
         {
-            return new PieceQuantik(self::WHITE, self::CYLINDRE);
+            return new PieceQuantik(self::CYLINDRE, self::BLACK);
         }
 
         public static function initBlackCylindre():PieceQuantik
         {
-            return new PieceQuantik(self::BLACK, self::CYLINDRE);
+            return new PieceQuantik(self::CYLINDRE, self::BLACK);
         }
 
         public static function initWhiteSphere():PieceQuantik
         {
-            return new PieceQuantik(self::WHITE, self::SPHERE);
+            return new PieceQuantik(self::SPHERE, self::WHITE);
         }
 
         public static function initBlackSphere():PieceQuantik
         {
-            return new PieceQuantik(self::BLACK, self::SPHERE);
+            return new PieceQuantik(self::SPHERE, self::BLACK);
         }
 
         protected int $forme = 0;
@@ -89,14 +89,16 @@
 
             switch ($this->forme)
             {
-                case self::CUBE    : $tmp .=sprintf("%-8s","Cube"    );break;
-                case self::CONE    : $tmp .=sprintf("%-8s","Cone"    );break;
-                case self::CYLINDRE: $tmp .=sprintf("%-8s","Cylindre");break;
-                case self::SPHERE  : $tmp .=sprintf("%-8s","Sphere"  );break;
-                case self::VOID    : $tmp .=sprintf("%-8s","");break;
+                case self::CUBE    : $tmp .= sprintf("%-10s","Cube"    );break;
+                case self::CONE    : $tmp .= sprintf("%-10s","Cone"    );break;
+                case self::CYLINDRE: $tmp .= sprintf("%-10s","Cylindre");break;
+                case self::SPHERE  : $tmp .= sprintf("%-10s","Sphere"  );break;
+                case self::VOID    : $tmp .= sprintf("%-10s","Void");break;
             }
 
             $res .= sprintf("%8s", $tmp);
+
+            $res = str_replace(" ", "&nbsp;", $res);
 
             return $res;
         }

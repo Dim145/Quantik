@@ -46,6 +46,8 @@
                 return array($this->cases[2][0], $this->cases[2][1], $this->cases[3][0], $this->cases[3][1]);
             else if($dir == PlateauQuantik::SE)
                 return array($this->cases[2][2], $this->cases[2][3], $this->cases[3][2], $this->cases[3][3]);
+
+            return array();
         }
 
         public function __toString():String
@@ -89,7 +91,7 @@
     }
 ?>
 
-<html>
+<html lang="fr">
     <head><title>PlateauQuantik</title></head>
     <body>
             <?php

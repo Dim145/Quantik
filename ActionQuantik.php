@@ -5,8 +5,9 @@ class ActionQuantik
 {
     protected PlateauQuantik $plateauQuantik;
 
-    public function __construct()
+    public function __construct( PlateauQuantik $plateau)
     {
+        $this->plateauQuantik = $plateau;
     }
 
     public function getPlateau():PlateauQuantik
