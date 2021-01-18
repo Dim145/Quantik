@@ -20,7 +20,7 @@
                 $this->cases[$cpt] = array();
 
                 for ($cpt2 = 0; $cpt2 < self::NBCOLS; $cpt2++)
-                    $this->cases[$cpt][$cpt2] = null;
+                    $this->cases[$cpt][$cpt2] = PieceQuantik::initVoid();
             }
         }
 
