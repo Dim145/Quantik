@@ -60,7 +60,7 @@
 
                 echo("<br />");
 
-                echo($a->__toString());
+                echo(str_replace("\n", "<br/>", $a->__toString()));
             ?>
     </body>
 </html>
