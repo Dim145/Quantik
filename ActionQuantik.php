@@ -55,19 +55,18 @@ class ActionQuantik
 
     public function __toString():string
     {
+        $res = "";
+
         for ($cpt = 0; $cpt < PlateauQuantik::NBROWS; $cpt++ )
-            if ($this->isRowWin($cpt) )
-                return "Ligne " . $cpt . " gagnante";
+            $res .= "Ligne " . $cpt . ( ($this->isRowWin($cpt) ) ? "gagnante" : "perdante") . "\n";
 
         for ($cpt = 0; $cpt < PlateauQuantik::NBCOLS; $cpt++ )
-            if ($this->isColWin($cpt) )
-                return "Colonne " . $cpt . " gagnante";
+            $res .= "Colonne " . $cpt . ( ($this->isColWin($cpt) ) ? "gagnante" : "perdante") . "\n";
 
         for ($cpt = 0; $cpt < 4; $cpt++ )
-            if ($this->isCornerWin($cpt) )
-                return "coté " . $cpt . " gagnante";
+            $res .= "coté " . $cpt . ( ($this->isCornerWin($cpt) ) ? "gagnant" : "perdant") . "\n";
 
-        return "Partie non gagner";
+        return $res;
     }
 
     private function isComboWin( array $pieces ):bool
