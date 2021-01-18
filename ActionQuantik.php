@@ -55,9 +55,19 @@ class ActionQuantik
 
     public function __toString():string
     {
-        // TODO: JSP QUOI FAIRE
+        for ($cpt = 0; $cpt < PlateauQuantik::NBROWS; $cpt++ )
+            if ($this->isRowWin($cpt) )
+                return "Ligne " . $cpt . " gagnante";
 
-        return $this->plateauQuantik->__toString();
+        for ($cpt = 0; $cpt < PlateauQuantik::NBCOLS; $cpt++ )
+            if ($this->isColWin($cpt) )
+                return "Colonne " . $cpt . " gagnante";
+
+        for ($cpt = 0; $cpt < 4; $cpt++ )
+            if ($this->isCornerWin($cpt) )
+                return "coté " . $cpt . " gagnante";
+
+        return "Partie non gagner";
     }
 
     private function isComboWin( array $pieces ):bool
