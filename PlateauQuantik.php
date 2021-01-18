@@ -1,5 +1,6 @@
 <?php
     include("PieceQuantik.php");
+    include("ActionQuantik.php");
 
     class PlateauQuantik
     {
@@ -100,7 +101,7 @@
                 $p->setPiece(0, 0, PieceQuantik::initBlackCube());
                 $p->setPiece(0, 1, PieceQuantik::initWhiteCylindre());
                 $p->setPiece(0, 2, PieceQuantik::initWhiteCone());
-                $p->setPiece(0, 3, PieceQuantik::initVoid());
+                $p->setPiece(0, 3, PieceQuantik::initBlackSphere());
 
                 $p->setPiece(1, 0, PieceQuantik::initBlackCube());
                 $p->setPiece(1, 1, PieceQuantik::initBlackCylindre());
@@ -124,6 +125,30 @@
                 echo($p->getCornerFromCoord(2,1));
                 echo($p->getCornerFromCoord(0,3));
                 echo($p->getCornerFromCoord(3,3));
+
+                echo("<br /><br />CORNER<br />");
+
+                $a = new ActionQuantik($p);
+                if($a->isCornerWin(0) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isCornerWin(1) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isCornerWin(2) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isCornerWin(3) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+
+                echo("<br /><br />ROW<br />");
+
+                if($a->isRowWin(0) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isRowWin(1) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isRowWin(2) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isRowWin(3) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+
+                echo("<br /><br />COLUMN<br />");
+
+                if($a->isColWin(0) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isColWin(1) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isColWin(2) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+                if($a->isColWin(3) == true) {echo ("yes<br />");} else {echo ("no<br />");}
+
+                echo("<br />");
             ?>
     </body>
 </html>
