@@ -56,13 +56,13 @@ class ActionQuantik
         $res = "";
 
         for ($cpt = 0; $cpt < PlateauQuantik::NBROWS; $cpt++ )
-            $res .= "Ligne " . $cpt . ( ($this->isRowWin($cpt) ) ? " gagnante" : " perdante") . "<br/>";
+            $res .= "Ligne " . $cpt . ( ($this->isRowWin($cpt) ) ? " gagnante" : " perdante") . "\n";
 
         for ($cpt = 0; $cpt < PlateauQuantik::NBCOLS; $cpt++ )
-            $res .= "Colonne " . $cpt . ( ($this->isColWin($cpt) ) ? " gagnante" : " perdante") . "<br/>";
+            $res .= "Colonne " . $cpt . ( ($this->isColWin($cpt) ) ? " gagnante" : " perdante") . "\n";
 
         for ($cpt = 0; $cpt < 4; $cpt++ )
-            $res .= "coté " . $cpt . ( ($this->isCornerWin($cpt) ) ? " gagnant" : " perdant") . "<br/>";
+            $res .= "coté " . $cpt . ( ($this->isCornerWin($cpt) ) ? " gagnant" : " perdant") . "\n";
 
         return $res;
     }
