@@ -13,7 +13,17 @@
 
         public function __construct()
         {
-            $this->cases = array(array(null,null,null,null), array(null,null,null,null), array(null,null,null,null), array(null,null,null,null));
+            //$this->cases = array(array(null,null,null,null), array(null,null,null,null), array(null,null,null,null), array(null,null,null,null));
+
+            $this->cases = array();
+
+            for( $cpt = 0; $cpt < self::NBROWS; $cpt++ )
+            {
+                $this->cases[$cpt] = array();
+
+                for ($cpt2 = 0; $cpt2 < self::NBCOLS; $cpt2++)
+                    $this->cases[$cpt][$cpt2] = null;
+            }
         }
 
         public function getPieces(int $numRow, int $numCol):PieceQuantik
@@ -28,12 +38,19 @@
 
         public function getRow(int $numRow):array
         {
-            return array($this->cases[$numRow][0], $this->cases[$numRow][1], $this->cases[$numRow][2], $this->cases[$numRow][3]);
+            //return array($this->cases[$numRow][0], $this->cases[$numRow][1], $this->cases[$numRow][2], $this->cases[$numRow][3]);
+            return $this->cases[$numRow];
         }
 
         public function getCol(int $numCol):array
         {
-            return array($this->cases[0][$numCol], $this->cases[1][$numCol], $this->cases[2][$numCol], $this->cases[3][$numCol]);
+            $tab = array();
+
+            for ($cpt = 0; $cpt < self::NBROWS; $cpt++)
+                $tab[$cpt] = $this->cases[$cpt][$numCol];
+
+            //return array($this->cases[0][$numCol], $this->cases[1][$numCol], $this->cases[2][$numCol], $this->cases[3][$numCol]);
+            return $tab;
         }
 
         public function getCorner(int $dir):array
