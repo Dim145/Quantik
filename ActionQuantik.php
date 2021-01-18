@@ -32,12 +32,7 @@ class ActionQuantik
 
     public function isValidePose( int $rowNum, int $colNum, PieceQuantik $piece ):bool
     {
-        $corner = 0;
-
-        if( $rowNum <  PlateauQuantik::NBROWS and $colNum <  PlateauQuantik::NBCOLS ) $corner = 0;
-        if( $rowNum <  PlateauQuantik::NBROWS and $colNum >= PlateauQuantik::NBCOLS ) $corner = 1;
-        if( $rowNum >= PlateauQuantik::NBROWS and $colNum >= PlateauQuantik::NBCOLS ) $corner = 2;
-        if( $rowNum >= PlateauQuantik::NBROWS and $colNum <  PlateauQuantik::NBCOLS ) $corner = 3;
+        $corner = PlateauQuantik::getCornerFromCoord($rowNum, $colNum);
 
         if( !$this->isPiecevalide($this->plateauQuantik->getCol($colNum), $piece) ) return false;
         if( !$this->isPiecevalide($this->plateauQuantik->getRow($rowNum), $piece) ) return false;
@@ -91,7 +86,7 @@ class ActionQuantik
     private function isPiecevalide( array $pieces, PieceQuantik $p ):bool
     {
         for ($cpt = 0; $cpt < count($pieces); $cpt++)
-            if ($pieces[$cpt]->getForme() == $p->getForme() && $p->getCouleur() != $pieces[$cpt]->getCouleur() )
+            if ($pieces[$cpt]->getForme() == $p->getForme() /*&& $p->getCouleur() != $pieces[$cpt]->getCouleur()*/ )
                 return false;
 
         return true;
