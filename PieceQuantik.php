@@ -4,6 +4,7 @@
         //public static int $WHITE = 0; // ou ?
         public const WHITE    = 0;
         public const BLACK    = 1;
+
         public const VOID     = 0;
         public const CUBE     = 1;
         public const CONE     = 2;

@@ -5,6 +5,7 @@
     {
         public const NBROWS = 4;
         public const NBCOLS = 4;
+
         public const NW = 0;
         public const NE = 1;
         public const SW = 2;
