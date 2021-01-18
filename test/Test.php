@@ -8,6 +8,11 @@
                 
                 $p  = new PlateauQuantik();
 
+                echo(assert(PieceQuantik::initVoid(), $p->getPieces(0,0)));
+
+                echo("<br />");
+                
+
                 $p->setPiece(0, 0, PieceQuantik::initBlackSphere());
                 $p->setPiece(0, 1, PieceQuantik::initWhiteCylindre());
                 $p->setPiece(0, 2, PieceQuantik::initWhiteCone());
