@@ -82,34 +82,30 @@ class PieceQuantik
     //Todo toString a revoir ?
     public function __toString(): string
     {
-        $res = "couleur: ";
-
-        $res .= $this->couleur == self::WHITE ? "White" : "Black";
-        $res .= ", type: ";
-
-        $tmp = "";
+        $res = "(";
 
         switch ($this->forme) {
             case self::CUBE    :
-                $tmp .= sprintf("%-10s", "Cube");
+                $res .= sprintf("%-2s", "Cu");
                 break;
             case self::CONE    :
-                $tmp .= sprintf("%-10s", "Cone");
+                $res .= sprintf("%-2s", "Co");
                 break;
             case self::CYLINDRE:
-                $tmp .= sprintf("%-10s", "Cylindre");
+                $res .= sprintf("%-2s", "Cy");
                 break;
             case self::SPHERE  :
-                $tmp .= sprintf("%-10s", "Sphere");
+                $res .= sprintf("%-2s", "Sp");
                 break;
             case self::VOID    :
-                $tmp .= sprintf("%-10s", "Void");
+                $res .= sprintf("%-2s", "Vo");
                 break;
         }
 
-        $res .= sprintf("%8s", $tmp);
+        $res .= ":";
+        $res .= $this->couleur == self::WHITE ? "W" : "B";
 
-        $res = str_replace(" ", "&nbsp;", $res);
+        $res = str_replace(" ", "&nbsp;", $res) . ")";
 
         return $res;
     }
