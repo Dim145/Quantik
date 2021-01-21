@@ -39,4 +39,19 @@
 
         return $sRet;
     }
+
+    function getDivPlateauQuantik(PlateauQuantik $plateau):string
+    {
+        $sRet = "<div>";
+
+        for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
+        {
+            for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
+                $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR+$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
+
+            $sRet .= "<br/>";
+        }
+
+        return $sRet . "</div>";
+    }
 ?>
