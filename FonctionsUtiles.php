@@ -6,6 +6,7 @@
                 <html lang=\"fr\">
                     <head>
                         <title>Quantik</title>
+                        <link rel=\"stylesheet\" href=\"../style.css\">
                     </head>
                     <body>";
     }
@@ -28,8 +29,7 @@
 
     function getFormSelectionPiece( ArrayPieceQuantik $pieces ):string
     {
-        $sRet = "<form action=\"\" method=\"post\">
-                    ";
+        $sRet = "<form action=\"\" method=\"post\">";
 
         for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
             $sRet .= "<button type=\"submit\" name=\"select\" value='$cpt' >" . $pieces->getPieceQuantik($cpt) . "</button>";
@@ -47,11 +47,29 @@
         for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
         {
             for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
-                $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR+$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
+                $sRet .= "<button type=\"submit\" name=\"active\"  disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
 
             $sRet .= "<br/>";
         }
 
         return $sRet . "</div>";
+    }
+
+    
+    function getFormPlateauQuantik(PlateauQuantik $plateau, PieceQuantik $piece):string
+    {
+        $sRet = "<form action=\"\" method=\"post\">";
+        for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
+        {
+            for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
+                if($plateau->getPieces($cptR, $cptC) == PieceQuantik::initVoid())
+                    $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
+                else
+                    $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
+
+            $sRet .= "<br/>";
+        }
+
+        return $sRet . "</form>";
     }
 ?>
