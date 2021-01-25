@@ -62,7 +62,7 @@
         for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
         {
             for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
-                if($plateau->getPieces($cptR, $cptC) == PieceQuantik::initVoid())
+                if($plateau->getPieces($cptR, $cptC) === PieceQuantik::initVoid())
                     $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
                 else
                     $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
@@ -75,9 +75,17 @@
 
     /*
     QUESTION 7
+        C'est un Cube:
+        -   Cube ou Cone première ligne
+        -   Cube, Sphère ou Cylindre a la seconde.
+    Donc Cube. (celui en communs aux deux lignes)
 
     QUESTION 8
+<<<<<<< HEAD
         On aurais un toolkit remplis de methode static et non de fonctions
+=======
+        On aurais un toolkit remplis de methode static => class utilitaire
+>>>>>>> 52e1443d9600fbcfb5c4a50e4e48cd79f1c00dce
     */
 ?>
 
