@@ -3,6 +3,8 @@
     require_once ("../ArrayPieceQuantik.php");
     require_once ("../PieceQuantik.php");
     require_once ("../PlateauQuantik.php");
+    require_once ("../ActionQuantik.php");
+
 
     echo getDebutHTML();
     echo getDivPiecesDisponibles(ArrayPieceQuantik::initPiecesNoires());
