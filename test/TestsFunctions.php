@@ -4,6 +4,11 @@
     require_once ("../PieceQuantik.php");
     require_once ("../PlateauQuantik.php");
 
+    FonctionsUtiles::setPlateau( new PlateauQuantik() );
+    FonctionsUtiles::getPlateau()->setPiece(0,0,PieceQuantik::initBlackCube());
+    FonctionsUtiles::setPn(ArrayPieceQuantik::initPiecesNoires());
+    FonctionsUtiles::setPb(ArrayPieceQuantik::initPiecesBlanches());
+
     echo FonctionsUtiles::getDebutHTML();
     echo FonctionsUtiles::getDivPiecesDisponibles(ArrayPieceQuantik::initPiecesNoires());
     echo "<br/>";
@@ -12,10 +17,8 @@
     echo "<br/>";
     echo FonctionsUtiles::getDivPlateauQuantik(new PlateauQuantik());
     echo "<br/>";
-    $plateau = new PlateauQuantik();
-    $plateau->setPiece(0,0,PieceQuantik::initBlackCube());
-    echo FonctionsUtiles::getDivPlateauQuantik($plateau);
+    echo FonctionsUtiles::getDivPlateauQuantik(FonctionsUtiles::getPlateau());
     echo "<br/>";
-    echo FonctionsUtiles::getFormPlateauQuantik($plateau, PieceQuantik::initBlackCone());
+    echo FonctionsUtiles::getFormPlateauQuantik(FonctionsUtiles::getPlateau(), PieceQuantik::initBlackCone());
     echo FonctionsUtiles::getFinHTML();
 ?>
