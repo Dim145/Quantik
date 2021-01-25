@@ -128,6 +128,10 @@
                 $sRet .= "<br/>";
             }
 
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$plateau . "\" name=\"plateau\">";
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pb . "\" name=\"pb\">";
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pn . "\" name=\"pn\">";
+
             return $sRet . "</form>";
         }
     }
