@@ -1,4 +1,4 @@
-<?php
+    <?php
     /** Construit un plateau de pièce en 4x4 */
     class PlateauQuantik
     {

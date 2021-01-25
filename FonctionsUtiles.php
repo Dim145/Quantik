@@ -3,7 +3,9 @@
 
     class FonctionsUtiles
     {
-        private static PlateauQuantik $plateau;
+        private static PlateauQuantik    $plateau;
+        private static ArrayPieceQuantik $pb;
+        private static ArrayPieceQuantik $pn;
 
         /**
          * @return array
@@ -52,8 +54,6 @@
         {
             self::$pn = $pn;
         }
-        private static ArrayPieceQuantik $pb;
-        private static ArrayPieceQuantik $pn;
 
         static function getDebutHTML():string
         {
@@ -121,7 +121,7 @@
             for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
             {
                 for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
-                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece))
+                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece) || $plateau->getPieces($cptR, $cptC) == PieceQuantik::initVoid())
                         $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
                     else
                         $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
