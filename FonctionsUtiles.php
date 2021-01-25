@@ -4,56 +4,9 @@
     class FonctionsUtiles
     {
         private static PlateauQuantik $plateau;
-
-        /**
-         * @return array
-         */
-        public static function getPlateau(): PlateauQuantik
-        {
-            return self::$plateau;
-        }
-
-        /**
-         * @param array $plateau
-         */
-        public static function setPlateau(PlateauQuantik $plateau): void
-        {
-            self::$plateau = $plateau;
-        }
-
-        /**
-         * @return array
-         */
-        public static function getPb(): ArrayPieceQuantik
-        {
-            return self::$pb;
-        }
-
-        /**
-         * @param array $pb
-         */
-        public static function setPb(ArrayPieceQuantik $pb): void
-        {
-            self::$pb = $pb;
-        }
-
-        /**
-         * @return array
-         */
-        public static function getPn(): ArrayPieceQuantik
-        {
-            return self::$pn;
-        }
-
-        /**
-         * @param array $pn
-         */
-        public static function setPn(ArrayPieceQuantik $pn): void
-        {
-            self::$pn = $pn;
-        }
         private static ArrayPieceQuantik $pb;
         private static ArrayPieceQuantik $pn;
+        private static bool              $isWhitePlay;
 
         static function getDebutHTML():string
         {
@@ -134,6 +87,72 @@
             $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pn . "\" name=\"pn\">";
 
             return $sRet . "</form>";
+        }
+
+        /**
+         * @return array
+         */
+        public static function getPlateau(): PlateauQuantik
+        {
+            return self::$plateau;
+        }
+
+        /**
+         * @param array $plateau
+         */
+        public static function setPlateau(PlateauQuantik $plateau): void
+        {
+            self::$plateau = $plateau;
+        }
+
+        /**
+         * @return array
+         */
+        public static function getPb(): ArrayPieceQuantik
+        {
+            return self::$pb;
+        }
+
+        /**
+         * @param array $pb
+         */
+        public static function setPb(ArrayPieceQuantik $pb): void
+        {
+            self::$pb = $pb;
+        }
+
+        /**
+         * @return array
+         */
+        public static function getPn(): ArrayPieceQuantik
+        {
+            return self::$pn;
+        }
+
+        /**
+         * @param array $pn
+         */
+        public static function setPn(ArrayPieceQuantik $pn): void
+        {
+            self::$pn = $pn;
+        }
+
+        /**
+         * @return bool
+         */
+        public static function isWhitePlay(): bool
+        {
+            return self::$isWhitePlay;
+        }
+
+        public static function setWhitePlay(): void
+        {
+            self::$isWhitePlay = true;
+        }
+
+        public static function setBlackPlay(): void
+        {
+            self::$isWhitePlay = false;
         }
     }
 

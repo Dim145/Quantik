@@ -26,11 +26,11 @@
         }
 
         /** Retourne la pièce dans le tableau à la position numRow numCol */
-        public function getPieces(int $numRow, int $numCol):PieceQuantik
+        public function getPieces(int $numRow, int $numCol): ?PieceQuantik
         {
             if($numRow>=0 && $numRow<4 && $numCol>=0 && $numCol<4)
                 return $this->cases[$numRow][$numCol];
-            return array();
+            return null;
         }
 
         /** Modifie ou ajoute la pièce donnée en paramètre aux coordonnées donnés en paramètre */
