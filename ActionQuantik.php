@@ -84,7 +84,7 @@ class ActionQuantik
     private function isPiecevalide( array $pieces, PieceQuantik $p ):bool
     {
         for ($cpt = 0; $cpt < count($pieces); $cpt++)
-            if ($pieces[$cpt]->getForme() == $p->getForme() /*&& $p->getCouleur() != $pieces[$cpt]->getCouleur()*/ )
+            if ( $pieces[$cpt]->getForme() == $p->getForme() /*&& $p->getCouleur() != $pieces[$cpt]->getCouleur()*/ )
                 return false;
 
         return true;
