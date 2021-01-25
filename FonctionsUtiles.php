@@ -1,76 +1,140 @@
 <?php
     
 
-    function getDebutHTML():string
+    class FonctionsUtiles
     {
-        return "<!DOCTYPE html>
+        private static PlateauQuantik $plateau;
+
+        /**
+         * @return array
+         */
+        public static function getPlateau(): PlateauQuantik
+        {
+            return self::$plateau;
+        }
+
+        /**
+         * @param array $plateau
+         */
+        public static function setPlateau(PlateauQuantik $plateau): void
+        {
+            self::$plateau = $plateau;
+        }
+
+        /**
+         * @return array
+         */
+        public static function getPb(): ArrayPieceQuantik
+        {
+            return self::$pb;
+        }
+
+        /**
+         * @param array $pb
+         */
+        public static function setPb(ArrayPieceQuantik $pb): void
+        {
+            self::$pb = $pb;
+        }
+
+        /**
+         * @return array
+         */
+        public static function getPn(): ArrayPieceQuantik
+        {
+            return self::$pn;
+        }
+
+        /**
+         * @param array $pn
+         */
+        public static function setPn(ArrayPieceQuantik $pn): void
+        {
+            self::$pn = $pn;
+        }
+        private static ArrayPieceQuantik $pb;
+        private static ArrayPieceQuantik $pn;
+
+        static function getDebutHTML():string
+        {
+            return "<!DOCTYPE html>
                 <html lang=\"fr\">
                     <head>
                         <title>Quantik</title>
                         <link rel=\"stylesheet\" href=\"../style.css\">
                     </head>
                     <body>";
-    }
+        }
 
-    function getFinHTML():string
-    {
-        return "    </body>
+        static function getFinHTML():string
+        {
+            return "    </body>
                 </html>";
-    }
+        }
 
-    function getDivPiecesDisponibles( ArrayPieceQuantik $pieces ):string
-    {
-        $sRet = "<div>";
+        static function getDivPiecesDisponibles( ArrayPieceQuantik $pieces ):string
+        {
+            $sRet = "<div>";
 
-        for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-            $sRet .= "<button type=\"submit\" name=\"active\" disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
+            for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
+                $sRet .= "<button type=\"submit\" name=\"active\" disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
 
-        return $sRet . "</div>";
-    }
+            return $sRet . "</div>";
+        }
 
-    function getFormSelectionPiece( ArrayPieceQuantik $pieces ):string
-    {
-        $sRet = "<form action=\"\" method=\"post\">";
+        static function getFormSelectionPiece( ArrayPieceQuantik $pieces ):string
+        {
+            $sRet = "<form action=\"\" method=\"post\">";
 
-        for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-            $sRet .= "<button type=\"submit\" name=\"select\" value='$cpt' >" . $pieces->getPieceQuantik($cpt) . "</button>";
+            for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
+                $sRet .= "<button type=\"submit\" name=\"select\" value='$cpt' >" . $pieces->getPieceQuantik($cpt) . "</button>";
 
-        $sRet .= "
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$plateau . "\" name=\"plateau\">";
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pb . "\" name=\"pb\">";
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pn . "\" name=\"pn\">";
+
+            $sRet .= "
                 </form>";
 
-        return $sRet;
-    }
-
-    function getDivPlateauQuantik(PlateauQuantik $plateau):string
-    {
-        $sRet = "<div>";
-
-        for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
-        {
-            for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
-                $sRet .= "<button type=\"submit\" name=\"active\"  disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
-
-            $sRet .= "<br/>";
+            return $sRet;
         }
 
-        return $sRet . "</div>";
-    }
-    
-    function getFormPlateauQuantik(PlateauQuantik $plateau, PieceQuantik $piece):string
-    {
-        $sRet = "<form action=\"\" method=\"post\">";
-        for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
+        static function getDivPlateauQuantik(PlateauQuantik $plateau):string
         {
-            for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
-                if((new ActionQuantik($plateau))->isValidePose($cptR, $cptC, $piece))
-                    $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
-                else
-                    $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
+            $sRet = "<div>";
 
-            $sRet .= "<br/>";
+            for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
+            {
+                for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
+                    $sRet .= "<button type=\"submit\" name=\"active\"  disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
+
+                $sRet .= "<br/>";
+            }
+
+            return $sRet . "</div>";
         }
 
-        return $sRet . "</form>";
+
+        static function getFormPlateauQuantik(PlateauQuantik $plateau, PieceQuantik $piece):string
+        {
+            $sRet = "<form action=\"\" method=\"post\">";
+            for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
+            {
+                for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
+                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece))
+                        $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
+                    else
+                        $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
+
+                $sRet .= "<br/>";
+            }
+
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$plateau . "\" name=\"plateau\">";
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pb . "\" name=\"pb\">";
+            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pn . "\" name=\"pn\">";
+
+            return $sRet . "</form>";
+        }
     }
 
     /*

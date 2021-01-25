@@ -28,7 +28,7 @@ class ActionQuantik
         return $this->isComboWin($this->plateauQuantik->getCorner($dir));
     }
 
-    public function isValidePose( int $rowNum, int $colNum, PieceQuantik $piece ):bool
+    public function isValidPose(int $rowNum, int $colNum, PieceQuantik $piece ):bool
     {
         $corner = PlateauQuantik::getCornerFromCoord($rowNum, $colNum);
 
@@ -40,7 +40,7 @@ class ActionQuantik
 
     public function posePiece( int $rowNum, int $colNum,  PieceQuantik $piece ):void
     {
-        if( $this->isValidePose($rowNum, $colNum, $piece) )
+        if( $this->isValidPose($rowNum, $colNum, $piece) )
             $this->plateauQuantik->setPiece($rowNum, $colNum, $piece);
         else
             echo 'mouvement invalide';

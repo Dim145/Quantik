@@ -1,23 +1,23 @@
 <?php
-    include ("../FonctionsUtiles.php");
+    require_once ("../FonctionsUtiles.php");
     require_once ("../ArrayPieceQuantik.php");
     require_once ("../PieceQuantik.php");
     require_once ("../PlateauQuantik.php");
     require_once ("../ActionQuantik.php");
 
 
-    echo getDebutHTML();
-    echo getDivPiecesDisponibles(ArrayPieceQuantik::initPiecesNoires());
+    echo FonctionsUtiles::getDebutHTML();
+    echo FonctionsUtiles::getDivPiecesDisponibles(ArrayPieceQuantik::initPiecesNoires());
     echo "<br/>";
-    echo getFormSelectionPiece(ArrayPieceQuantik::initPiecesNoires());
-    echo getFormSelectionPiece(ArrayPieceQuantik::initPiecesBlanches());
+    echo FonctionsUtiles::getFormSelectionPiece(ArrayPieceQuantik::initPiecesNoires());
+    echo FonctionsUtiles::getFormSelectionPiece(ArrayPieceQuantik::initPiecesBlanches());
     echo "<br/>";
-    echo getDivPlateauQuantik(new PlateauQuantik());
+    echo FonctionsUtiles::getDivPlateauQuantik(new PlateauQuantik());
     echo "<br/>";
     $plateau = new PlateauQuantik();
     $plateau->setPiece(0,0,PieceQuantik::initBlackCube());
-    echo getDivPlateauQuantik($plateau);
+    echo FonctionsUtiles::getDivPlateauQuantik($plateau);
     echo "<br/>";
-    echo getFormPlateauQuantik($plateau, PieceQuantik::initBlackCone());
-    echo getFinHTML();
+    echo FonctionsUtiles::getFormPlateauQuantik($plateau, PieceQuantik::initBlackCone());
+    echo FonctionsUtiles::getFinHTML();
 ?>

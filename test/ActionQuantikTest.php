@@ -30,7 +30,7 @@ class ActionQuantikTest extends TestCase
         $p->setPiece(0, 1, PieceQuantik::initWhiteSphere());
         $p->setPiece(0, 2, PieceQuantik::initBlackCone());
 
-        self::assertTrue ($a->isValidePose(0, 3, PieceQuantik::initWhiteCylindre()));
-        self::assertFalse($a->isValidePose(0, 3, PieceQuantik::initBlackCube()));
+        self::assertTrue ($a->isValidPose(0, 3, PieceQuantik::initWhiteCylindre()));
+        self::assertFalse($a->isValidPose(0, 3, PieceQuantik::initBlackCube()));
     }
 }
