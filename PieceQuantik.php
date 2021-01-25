@@ -39,7 +39,7 @@ class PieceQuantik
 
     public static function initWhiteCylindre(): PieceQuantik
     {
-        return new PieceQuantik(self::CYLINDRE, self::BLACK);
+        return new PieceQuantik(self::CYLINDRE, self::WHITE);
     }
 
     public static function initBlackCylindre(): PieceQuantik

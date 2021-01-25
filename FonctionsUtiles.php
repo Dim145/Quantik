@@ -37,14 +37,10 @@
 
         static function getFormSelectionPiece( ArrayPieceQuantik $pieces ):string
         {
-            $sRet = "<form action=\"\" method=\"post\">";
+            $sRet = "<form action=\"./PosePieceBlanche.php\" method=\"post\">";
 
             for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-                $sRet .= "<button type=\"submit\" name=\"select\" value='$cpt' >" . $pieces->getPieceQuantik($cpt) . "</button>";
-
-            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$plateau . "\" name=\"plateau\">";
-            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pb . "\" name=\"pb\">";
-            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pn . "\" name=\"pn\">";
+                $sRet .= "<button type=\"submit\" name=\"piece\" value='$cpt' >" . $pieces->getPieceQuantik($cpt) . "</button>";
 
             $sRet .= "
                 </form>";
@@ -82,12 +78,55 @@
                 $sRet .= "<br/>";
             }
 
-            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$plateau . "\" name=\"plateau\">";
-            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pb . "\" name=\"pb\">";
-            $sRet .= "<input type=\"hidden\" value=\"" . FonctionsUtiles::$pn . "\" name=\"pn\">";
-
             return $sRet . "</form>";
         }
+
+        static function getPlateauFromString( string $toString ): PlateauQuantik
+        {
+            $plateau = new PlateauQuantik();
+
+            $tabStringLigne = explode("<br />", $toString);
+
+            for ( $cptR = 0; $cptR < count($tabStringLigne); $cptR++ )
+            {
+                $tabCases = explode(", ", substr($tabStringLigne[$cptR], 1, strlen($tabStringLigne[$cptR])-1));
+
+                for ( $cptC = 0; $cptC < count($tabCases); $cptC++ )
+                {
+                    echo $tabCases[$cptC];
+                    $case = $tabCases[$cptC];
+
+                    if( strpos($case, 'B') )
+                    {
+                        if( strpos($case, 'Cy') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initBlackCylindre());
+                        if( strpos($case, 'Cu') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initBlackCube());
+                        if( strpos($case, 'Sp') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initBlackSphere());
+                        if( strpos($case, 'Co') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initBlackCone());
+                        if( strpos($case, 'Vo') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initVoid());
+                    }
+                    else
+                    {
+                        if( strpos($case, 'Cy') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initWhiteCylindre());
+                        if( strpos($case, 'Cu') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initWhiteCube());
+                        if( strpos($case, 'Sp') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initWhiteSphere());
+                        if( strpos($case, 'Co') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initWhiteCone());
+                        if( strpos($case, 'Vo') ) $plateau->setPiece($cptR, $cptC, PieceQuantik::initVoid());
+                    }
+                }
+            }
+
+            return $plateau;
+        }
+
+        static function getPiecesFromString( string $toString ): ArrayPieceQuantik
+        {
+            $array = new ArrayPieceQuantik();
+
+
+
+            return $array;
+        }
+
 
         /**
          * @return array
