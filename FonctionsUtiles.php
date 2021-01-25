@@ -77,7 +77,7 @@
     QUESTION 7
 
     QUESTION 8
-        On aurais un toolkit remplis de methode static
+        On aurais un toolkit remplis de methode static et non de fonctions
     */
 ?>
 
