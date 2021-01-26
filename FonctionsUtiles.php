@@ -81,6 +81,32 @@
             return $sRet . "</form>";
         }
 
+        /**
+         * @return string
+         */
+        public static function getFormBoutonAnnuler() : string
+        {
+            return "<button><a href=\"".$_SERVER['HTTP_REFERER']."\">annuler</a></button>";
+        }
+
+        /**
+         * @param int $couleur
+         * @return string
+         */
+        public static function getDivMessageVictoire(int $couleur) : string {
+            /* TODO div annonçant la couleur victorieuse et proposant un lien pour recommencer une nouvelle partie */
+            $resultat ="";
+            return $resultat;
+        }
+
+        /**
+         * @return string
+         */
+        public static function getLienRecommencer():string
+        {
+            return "<p><a href=\"./SelectionPiece.php?reset\">Recommencer ?</a></p>";
+        }
+
         static function getPlateauFromString( string $toString ): PlateauQuantik
         {
             $plateau = new PlateauQuantik();

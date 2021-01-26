@@ -6,6 +6,15 @@
 
     session_start();
 
+    if (isset($_GET['reset']))
+    {
+        unset($_SESSION['plateau']);
+        unset($_SESSION['pb']);
+        unset($_SESSION['pn']);
+        unset($_SESSION['isWhitePlay']);
+        unset($_SESSION['pieceBis']);
+    }
+
     FonctionsUtiles::setPlateau( isset($_SESSION['plateau']) ? $_SESSION['plateau'] : new PlateauQuantik() );
     FonctionsUtiles::setPb     ( isset($_SESSION['pb'])      ? $_SESSION['pb']      : ArrayPieceQuantik::initPiecesBlanches() );
     FonctionsUtiles::setPn     ( isset($_SESSION['pn'])      ? $_SESSION['pn']      : ArrayPieceQuantik::initPiecesNoires() );
@@ -31,5 +40,6 @@
     echo FonctionsUtiles::getDivPlateauQuantik(FonctionsUtiles::getPlateau());
     echo "<br/>";
     echo FonctionsUtiles::getFormSelectionPiece(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn());
+    echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();
 ?>

@@ -66,6 +66,8 @@
     echo FonctionsUtiles::getFormPlateauQuantik($_SESSION["plateau"], $tab->getPieceQuantik(intval($_POST["piece"])) );
     echo "<br/>";
     echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn());
+    echo FonctionsUtiles::getFormBoutonAnnuler();
+    echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();
 
 ?>
