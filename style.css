@@ -1,4 +1,47 @@
-button:enabled{
+button:enabled:not(.btnNoir):not(.btnBlanc){
   background-color: green;
   color: white;
+}
+
+button:disabled:not(.btnNoir):not(.btnBlanc):not(.btnSelection){
+  background-color: darkred;
+  color: white;
+}
+
+.btnNoir
+{
+  background-color: black;
+  color: white;
+}
+
+.btnBlanc
+{
+  background-color: white;
+  color: black;
+}
+
+.btnSelection
+{
+  background-color: blue;
+  color: white;
+}
+
+body
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contenuPage
+{
+  border-radius: 10px;
+  border: 1px solid;
+  display: table;
+  width: auto;
+  padding:30px;
+  margin:5px;
+  background-color:#efefef; /* gris */
+  box-shadow: 5px 5px 5px #AAAAAA;
 }

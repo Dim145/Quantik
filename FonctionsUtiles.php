@@ -16,31 +16,44 @@
                         <title>Quantik</title>
                         <link rel=\"stylesheet\" href=\"../style.css\">
                     </head>
-                    <body>";
+                    <body>
+                        <center>
+                            <div class=\"contenuPage\">";
         }
 
         static function getFinHTML():string
         {
-            return "    </body>
+            return "        </div>
+                        </center>
+                    </body>
                 </html>";
         }
 
-        static function getDivPiecesDisponibles( ArrayPieceQuantik $pieces ):string
+        static function getDivPiecesDisponibles( ArrayPieceQuantik $pieces, bool $isWhitePlay, PieceQuantik $pieceParam=null):string
         {
             $sRet = "<div>";
 
             for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-                $sRet .= "<button type=\"submit\" name=\"active\" disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
+                if($pieces->getPieceQuantik($cpt) == $pieceParam)
+                    $sRet .= "<button type=\"submit\" class=\"btnSelection\" disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
+                else
+                    if($isWhitePlay == true)
+                        $sRet .= "<button type=\"submit\" class=\"btnBlanc\"disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
+                    else
+                        $sRet .= "<button type=\"submit\" class=\"btnNoir\" disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
 
             return $sRet . "</div>";
         }
 
-        static function getFormSelectionPiece( ArrayPieceQuantik $pieces ):string
+        static function getFormSelectionPiece( ArrayPieceQuantik $pieces, bool $isWhitePlay):string
         {
             $sRet = "<form action=\"./PosePieceBlanche.php\" method=\"post\">";
 
             for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-                $sRet .= "<button type=\"submit\" name=\"piece\" value=\"".$cpt."\" >" . $pieces->getPieceQuantik($cpt) . "</button>";
+                if($isWhitePlay == true)
+                    $sRet .= "<button type=\"submit\" class=\"btnBlanc\" name=\"piece\" value=\"".$cpt."\" >" . $pieces->getPieceQuantik($cpt) . "</button>";
+                else
+                    $sRet .= "<button type=\"submit\" class=\"btnNoir\" name=\"piece\" value=\"".$cpt."\" >" . $pieces->getPieceQuantik($cpt) . "</button>";
 
             $sRet .= "
                 </form>";
@@ -70,10 +83,11 @@
             for ( $cptR = 0; $cptR < $plateau::NBROWS; $cptR++ )
             {
                 for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
-                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece) || $plateau->getPieces($cptR, $cptC) == PieceQuantik::initVoid())
+                    /*in_array($piece, $plateau->getRow($cptR) , false) == false && in_array($piece,  $plateau->getCol($cptC), false) == false || */
+                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece) && $plateau->getPieces($cptR, $cptC) == PieceQuantik::initVoid())
                         $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
                     else
-                        $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
+                        $sRet .= "<button type=\"submit\" name=\"select\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
 
                 $sRet .= "<br/>";
             }
@@ -86,7 +100,7 @@
          */
         public static function getFormBoutonAnnuler() : string
         {
-            return "<button><a href=\"".$_SERVER['HTTP_REFERER']."\">annuler</a></button>";
+            return "<br/><button class=\"btnBlanc\"><a href=\"".$_SERVER['HTTP_REFERER']."\">annuler</a></button>";
         }
 
         /**
@@ -224,8 +238,10 @@
         {
             $sret = self::getDebutHTML();
 
-            $sret .= "<h1>Les " . (self::$isWhitePlay ? " noirs" : "blancs" ) . " ont gagnés</h1>";
+            /*on inverse le isWhitePlay car a la fin de la pose on l'inverse*/
+            $sret .= "<h1>Les " . (!self::$isWhitePlay ? " noirs" : "blancs" ) . " ont gagnés</h1>";
             $sret .= self::getLienRecommencer();
+            $sret .= "<audio src=\"../ressources/Trumpet.mp3\" autoplay=\"true\"";
 
             return $sret . self::getFinHTML();
         }
@@ -256,10 +272,7 @@
         -   Cube ou Cone première ligne
         -   Cube, Sphère ou Cylindre a la seconde.
         Donc Cube. (celui en communs aux deux lignes)
-
     QUESTION 8
         On aurais un toolkit remplis de methode static => class utilitaire
     */
 ?>
-
-

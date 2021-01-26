@@ -42,8 +42,6 @@ class ActionQuantik
     {
         if( $this->isValidPose($rowNum, $colNum, $piece) )
             $this->plateauQuantik->setPiece($rowNum, $colNum, $piece);
-        else
-            echo 'mouvement invalide';
     }
 
     public function __toString():string

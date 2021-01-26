@@ -6,17 +6,19 @@
     require_once ("../ActionQuantik.php");
 
     session_start();
-    $_SESSION["plateau"] = new PlateauQuantik;
+    /*$_SESSION["plateau"] = new PlateauQuantik;
     $_SESSION["pb"]      = ArrayPieceQuantik::initPiecesBlanches();
     $_SESSION["pn"]      = ArrayPieceQuantik::initPiecesNoires();
-    $_SESSION["piece"]   = PieceQuantik::initVoid();
+    $_SESSION["piece"]   = PieceQuantik::initVoid();*/
     if(! isset($_SESSION["plateau"]))
     {
         header('Location: SelectionPiece.php');
         exit();
     }
 
-    
+    FonctionsUtiles::setPlateau($_SESSION['plateau']);
+    FonctionsUtiles::setPb     ($_SESSION['pb']);
+    FonctionsUtiles::setPn     ($_SESSION['pn']);
 
     if( isset($_SESSION['isWhitePlay']) )
     {
@@ -45,6 +47,7 @@
             $tab->removePieceQuantik($indice);
             $_SESSION['isWhitePlay'] = !FonctionsUtiles::isWhitePlay();
         }
+        
 
         $_SESSION["plateau"] = FonctionsUtiles::getPlateau();
         $_SESSION["pb"]      = FonctionsUtiles::getPb();
@@ -65,11 +68,11 @@
     }
     
     echo FonctionsUtiles::getDebutHTML();
-    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb());
+    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb(), !$_SESSION['isWhitePlay']);
     echo "<br/>";
     echo FonctionsUtiles::getFormPlateauQuantik($_SESSION["plateau"], $tab->getPieceQuantik(intval($_POST["piece"])) );
     echo "<br/>";
-    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn());
+    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn(), $_SESSION['isWhitePlay'], $tab->getPieceQuantik(intval($_POST["piece"])));
     echo FonctionsUtiles::getFormBoutonAnnuler();
     echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();

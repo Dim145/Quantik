@@ -35,11 +35,11 @@
     $_SESSION['isWhitePlay'] = FonctionsUtiles::isWhitePlay();
 
     echo FonctionsUtiles::getDebutHTML();
-    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb());
+    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb(), !$_SESSION['isWhitePlay']);
     echo "<br/>";
     echo FonctionsUtiles::getDivPlateauQuantik(FonctionsUtiles::getPlateau());
     echo "<br/>";
-    echo FonctionsUtiles::getFormSelectionPiece(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn());
+    echo FonctionsUtiles::getFormSelectionPiece(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn(), $_SESSION['isWhitePlay']);
     echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();
 ?>
