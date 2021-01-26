@@ -39,14 +39,18 @@
         $row = intval(substr($_POST["select"], 0,1));
         $col = intval(substr($_POST["select"], 2,1));
 
-        (new ActionQuantik(FonctionsUtiles::getPlateau()))->posePiece($row, $col, $tab->getPieceQuantik($indice));
+        $actionQuantik = new ActionQuantik(FonctionsUtiles::getPlateau());
 
-        $tab->removePieceQuantik($indice);
+        if( $actionQuantik->isValidPose($row, $col, $tab->getPieceQuantik($indice)))
+        {
+            $actionQuantik->posePiece($row, $col, $tab->getPieceQuantik($indice));
+            $tab->removePieceQuantik($indice);
+            $_SESSION['isWhitePlay'] = !FonctionsUtiles::isWhitePlay();
+        }
 
         $_SESSION["plateau"] = FonctionsUtiles::getPlateau();
         $_SESSION["pb"]      = FonctionsUtiles::getPb();
         $_SESSION["pn"]      = FonctionsUtiles::getPn();
-        $_SESSION['isWhitePlay'] = !FonctionsUtiles::isWhitePlay();
 
         header('Location: SelectionPiece.php');
         exit();
