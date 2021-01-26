@@ -10,40 +10,68 @@
     $_SESSION["pb"]      = ArrayPieceQuantik::initPiecesBlanches();
     $_SESSION["pn"]      = ArrayPieceQuantik::initPiecesNoires();
     $_SESSION["piece"]   = PieceQuantik::initVoid();
-
-    FonctionsUtiles::setPlateau($_SESSION['plateau']);
-    FonctionsUtiles::setPb     ($_SESSION['pb']);
-    FonctionsUtiles::setPn     ($_SESSION['pn']);
-
     if(! isset($_SESSION["plateau"]))
     {
-        header('Location: SelectionPieceBlanche.php');
+        header('Location: SelectionPiece.php');
         exit();
     }
+
+    
+
+    if( isset($_SESSION['isWhitePlay']) )
+    {
+        if($_SESSION['isWhitePlay']) FonctionsUtiles::setWhitePlay();
+        else                         FonctionsUtiles::setBlackPlay();
+    }
+    else
+    {
+        FonctionsUtiles::setWhitePlay();
+    }
+
+    $tab = FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn();
 
     if(isset($_POST["select"]))
     {
-        $row = (int)substr($_POST["select"], 0,0);
-        $col = (int)substr($_POST["select"], 2,2);
-        (new ActionQuantik)->posePiece($row, $col, $_POST["piece"]);
+        $indice = $_SESSION['pieceBis'];
 
-        $_SESSION["isWhitePlay"] = ! $_SESSION["isWhitePlay"];
-        /*if($_SESSION["isWhitePlay"])*/
-            header('Location: PosePieceBlanche.php');
-        /*else
-            header('Location: SelectionPieceNoire.php');*/
+        $row = intval(substr($_POST["select"], 0,1));
+        $col = intval(substr($_POST["select"], 2,1));
+
+        $actionQuantik = new ActionQuantik(FonctionsUtiles::getPlateau());
+
+        if( $actionQuantik->isValidPose($row, $col, $tab->getPieceQuantik($indice)))
+        {
+            $actionQuantik->posePiece($row, $col, $tab->getPieceQuantik($indice));
+            $tab->removePieceQuantik($indice);
+            $_SESSION['isWhitePlay'] = !FonctionsUtiles::isWhitePlay();
+        }
+
+        $_SESSION["plateau"] = FonctionsUtiles::getPlateau();
+        $_SESSION["pb"]      = FonctionsUtiles::getPb();
+        $_SESSION["pn"]      = FonctionsUtiles::getPn();
+
+        if( FonctionsUtiles::isPartieTerminer() )
+        {
+            echo FonctionsUtiles::getPage_Victoire();
+            exit();
+        }
+
+        header('Location: SelectionPiece.php');
         exit();
     }
-
-    
-
+    else
+    {
+        $_SESSION['pieceBis'] = intval($_POST["piece"]);
+    }
     
     echo FonctionsUtiles::getDebutHTML();
-    echo FonctionsUtiles::getDivPiecesDisponibles($_SESSION["pn"]);
+    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb());
     echo "<br/>";
-    echo FonctionsUtiles::getFormPlateauQuantik($_SESSION["plateau"], $_POST["piece"]);
+    echo FonctionsUtiles::getFormPlateauQuantik($_SESSION["plateau"], $tab->getPieceQuantik(intval($_POST["piece"])) );
     echo "<br/>";
-    echo FonctionsUtiles::getDivPiecesDisponibles($_SESSION["pb"]);
+    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn());
+    echo FonctionsUtiles::getFormBoutonAnnuler();
+    echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();
 
 ?>

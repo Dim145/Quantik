@@ -16,6 +16,9 @@ class ArrayPieceQuantik
     {
         $res = "";
 
+        foreach ($this->piecesQuantiks as $piece)
+            $res .= $piece . ",";
+
         return $res;
     }
 
