@@ -31,8 +31,7 @@
     }
 
     $tab = FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn();
-    echo intval($_POST["piece"]);
-    $_SESSION['pieceBis'] = intval($_POST["piece"]);
+
     if(isset($_POST["select"]))
     {
         $indice = $_SESSION['pieceBis'];
@@ -51,6 +50,10 @@
 
         header('Location: SelectionPiece.php');
         exit();
+    }
+    else
+    {
+        $_SESSION['pieceBis'] = intval($_POST["piece"]);
     }
     
     echo FonctionsUtiles::getDebutHTML();
