@@ -63,9 +63,7 @@
         exit();
     }
     else
-    {
         $_SESSION['pieceBis'] = intval($_POST["piece"]);
-    }
     
     echo FonctionsUtiles::getDebutHTML();
     echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb(), !$_SESSION['isWhitePlay']);
