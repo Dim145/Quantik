@@ -20,11 +20,16 @@
         FonctionsUtiles::setWhitePlay();
     }
 
+    $_SESSION['plateau']     = FonctionsUtiles::getPlateau();
+    $_SESSION['pb']          = FonctionsUtiles::getPb();
+    $_SESSION['pn']          = FonctionsUtiles::getPn();
+    $_SESSION['isWhitePlay'] = FonctionsUtiles::isWhitePlay();
+
     echo FonctionsUtiles::getDebutHTML();
-    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::getPn());
+    echo FonctionsUtiles::getDivPiecesDisponibles(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPn() : FonctionsUtiles::getPb());
     echo "<br/>";
     echo FonctionsUtiles::getDivPlateauQuantik(FonctionsUtiles::getPlateau());
     echo "<br/>";
-    echo FonctionsUtiles::getFormSelectionPiece(FonctionsUtiles::getPb());
+    echo FonctionsUtiles::getFormSelectionPiece(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn());
     echo FonctionsUtiles::getFinHTML();
 ?>

@@ -12,7 +12,7 @@
     $_SESSION["piece"]   = PieceQuantik::initVoid();*/
     /*if(! isset($_SESSION["plateau"]))
     {
-        header('Location: SelectionPieceBlanche.php');
+        header('Location: SelectionPiece.php');
         exit();
     }*/
 
@@ -21,7 +21,7 @@
         $row = (int)substr($_POST["select"], 0,0);
         $col = (int)substr($_POST["select"], 2,2);
         $_SESSION["plateau"]->posePiece($row, $col, $_SESSION["piece"]);
-        header('Location: SelectionPieceBlanche.php');
+        header('Location: SelectionPiece.php');
         exit();
     }
 
@@ -33,7 +33,7 @@
     echo FonctionsUtiles::getDebutHTML();
     echo FonctionsUtiles::getDivPiecesDisponibles($_SESSION["pn"]);
     echo "<br/>";
-    echo FonctionsUtiles::getFormPlateauQuantik($_SESSION["plateau"], $_SESSION["piece"]);
+    echo FonctionsUtiles::getFormPlateauQuantik($_SESSION["plateau"], $_POST["piece"]);
     echo "<br/>";
     echo FonctionsUtiles::getDivPiecesDisponibles($_SESSION["pb"]);
     echo FonctionsUtiles::getFinHTML();
