@@ -52,6 +52,12 @@
         $_SESSION["pb"]      = FonctionsUtiles::getPb();
         $_SESSION["pn"]      = FonctionsUtiles::getPn();
 
+        if( FonctionsUtiles::isPartieTerminer() )
+        {
+            echo FonctionsUtiles::getPage_Victoire();
+            exit();
+        }
+
         header('Location: SelectionPiece.php');
         exit();
     }

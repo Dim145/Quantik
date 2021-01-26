@@ -219,6 +219,35 @@
         {
             self::$isWhitePlay = false;
         }
+
+        public static function getPage_Victoire(): string
+        {
+            $sret = self::getDebutHTML();
+
+            $sret .= "<h1>Les " . (self::$isWhitePlay ? " noirs" : "blancs" ) . " ont gagnés</h1>";
+            $sret .= self::getLienRecommencer();
+
+            return $sret . self::getFinHTML();
+        }
+
+        public static function isPartieTerminer(): bool
+        {
+            $action = new ActionQuantik(self::getPlateau());
+
+            for ( $cpt = 0; $cpt < PlateauQuantik::NBROWS; $cpt++ )
+                if( $action->isRowWin($cpt) )
+                    return true;
+
+            for ( $cpt = 0; $cpt < PlateauQuantik::NBCOLS; $cpt++ )
+                if( $action->isColWin($cpt) )
+                    return true;
+
+            for ( $cpt = 0; $cpt < 4; $cpt++ )
+                if( $action->isCornerWin($cpt) )
+                    return true;
+
+            return false;
+        }
     }
 
     /*
