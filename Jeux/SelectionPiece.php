@@ -1,10 +1,10 @@
 <?php
-    session_start();
-
     require_once ("../FonctionsUtiles.php");
     require_once ("../ArrayPieceQuantik.php");
     require_once ("../PieceQuantik.php");
     require_once ("../PlateauQuantik.php");
+
+    session_start();
 
     FonctionsUtiles::setPlateau( isset($_SESSION['plateau']) ? $_SESSION['plateau'] : new PlateauQuantik() );
     FonctionsUtiles::setPb     ( isset($_SESSION['pb'])      ? $_SESSION['pb']      : ArrayPieceQuantik::initPiecesBlanches() );

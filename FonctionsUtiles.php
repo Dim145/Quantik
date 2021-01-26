@@ -40,7 +40,7 @@
             $sRet = "<form action=\"./PosePieceBlanche.php\" method=\"post\">";
 
             for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-                $sRet .= "<button type=\"submit\" name=\"piece\" value='$cpt' >" . $pieces->getPieceQuantik($cpt) . "</button>";
+                $sRet .= "<button type=\"submit\" name=\"piece\" value=\"".$cpt."\" >" . $pieces->getPieceQuantik($cpt) . "</button>";
 
             $sRet .= "
                 </form>";
