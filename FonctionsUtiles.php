@@ -246,6 +246,17 @@
             return $sret . self::getFinHTML();
         }
 
+        public static function getPage_egaliter(): string
+        {
+            $sret = self::getDebutHTML();
+
+            /*on inverse le isWhitePlay car a la fin de la pose on l'inverse*/
+            $sret .= "<h1>Plus personnes n'as de pièces...<br/> jeux terminé</h1>";
+            $sret .= self::getLienRecommencer();
+
+            return $sret . self::getFinHTML();
+        }
+
         public static function isPartieTerminer(): bool
         {
             $action = new ActionQuantik(self::getPlateau());
