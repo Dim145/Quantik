@@ -1,29 +1,40 @@
 button:enabled:not(.btnNoir):not(.btnBlanc){
   background-color: green;
   color: white;
+  margin: 5px;
 }
 
 button:disabled:not(.btnNoir):not(.btnBlanc):not(.btnSelection){
   background-color: darkred;
   color: white;
+  margin: 5px;
 }
 
 .btnNoir
 {
   background-color: black;
   color: white;
+  margin: 2px;
 }
 
 .btnBlanc
 {
   background-color: white;
   color: black;
+  margin: 2px;
 }
 
 .btnSelection
 {
   background-color: blue;
   color: white;
+  margin: 2px;
+}
+
+button
+{
+  border-radius: 5px;
+  font-weight: bold;
 }
 
 body
@@ -34,6 +45,11 @@ body
   transform: translate(-50%, -50%);
 }
 
+html
+{
+  background-color: #282923;
+}
+
 .contenuPage
 {
   border-radius: 10px;
@@ -42,6 +58,9 @@ body
   width: auto;
   padding:30px;
   margin:5px;
-  background-color:#efefef; /* gris */
-  box-shadow: 5px 5px 5px #AAAAAA;
+  background-color:#373f48; /* gris */
+  box-shadow: 5px 5px 5px #373f48;
 }
+
+:link    { color: forestgreen; }
+:visited { color: forestgreen; }
