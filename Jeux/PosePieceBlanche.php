@@ -59,6 +59,12 @@
             exit();
         }
 
+        if( FonctionsUtiles::getPn()->getTaille() == 0 && FonctionsUtiles::getPb()->getTaille() == 0 )
+        {
+            echo FonctionsUtiles::getPage_egaliter();
+            exit();
+        }
+
         header('Location: SelectionPiece.php');
         exit();
     }
