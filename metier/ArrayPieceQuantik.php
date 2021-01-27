@@ -1,5 +1,5 @@
 <?php
-require_once ("PieceQuantik.php");
+require_once("PieceQuantik.php");
 
 class ArrayPieceQuantik
 {

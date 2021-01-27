@@ -1,9 +1,9 @@
 <?php
-    require_once ("../FonctionsUtiles.php");
-    require_once ("../ArrayPieceQuantik.php");
-    require_once ("../PieceQuantik.php");
-    require_once ("../PlateauQuantik.php");
-    require_once ("../ActionQuantik.php");
+    require_once("../FonctionsUtiles.php");
+    require_once("../ArrayPieceQuantik.php");
+    require_once("../PieceQuantik.php");
+    require_once("../PlateauQuantik.php");
+    require_once("../ActionQuantik.php");
 
 
     FonctionsUtiles::setPlateau( new PlateauQuantik() );

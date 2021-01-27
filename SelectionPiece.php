@@ -1,8 +1,8 @@
 <?php
-    require_once ("../FonctionsUtiles.php");
-    require_once ("../ArrayPieceQuantik.php");
-    require_once ("../PieceQuantik.php");
-    require_once ("../PlateauQuantik.php");
+    require_once("./metier/FonctionsUtiles.php");
+    require_once("./metier/ArrayPieceQuantik.php");
+    require_once("./metier/PieceQuantik.php");
+    require_once("./metier/PlateauQuantik.php");
 
     session_start();
 

@@ -14,7 +14,7 @@
                 <html lang=\"fr\">
                     <head>
                         <title>Quantik</title>
-                        <link rel=\"stylesheet\" href=\"../style.css\">
+                        <link rel=\"stylesheet\" href=\"./css/style.css\">
                     </head>
                     <body>
                         <center>
@@ -47,7 +47,7 @@
 
         static function getFormSelectionPiece( ArrayPieceQuantik $pieces, bool $isWhitePlay):string
         {
-            $sRet = "<form action=\"./PosePieceBlanche.php\" method=\"post\">";
+            $sRet = "<form action=\"./PosePiece.php\" method=\"post\">";
 
             for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
                 if($isWhitePlay == true)
@@ -241,7 +241,7 @@
             /*on inverse le isWhitePlay car a la fin de la pose on l'inverse*/
             $sret .= "<h1>Les " . (!self::$isWhitePlay ? " noirs" : "blancs" ) . " ont gagnés</h1>";
             $sret .= self::getLienRecommencer();
-            $sret .= "<audio src=\"../ressources/Trumpet.mp3\" autoplay=\"true\"";
+            $sret .= "<audio src=\"./ressources/Trumpet.mp3\" autoplay=\"true\"";
 
             return $sret . self::getFinHTML();
         }

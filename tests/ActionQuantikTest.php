@@ -1,8 +1,8 @@
 <?php
 
-require_once ("../PlateauQuantik.php");
-require_once ("../PieceQuantik.php");
-require_once ("../ActionQuantik.php");
+require_once("../PlateauQuantik.php");
+require_once("../PieceQuantik.php");
+require_once("../ActionQuantik.php");
 use PHPUnit\Framework\TestCase;
 
 class ActionQuantikTest extends TestCase

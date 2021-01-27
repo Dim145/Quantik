@@ -1,9 +1,9 @@
 <?php
-    require_once ("../FonctionsUtiles.php");
-    require_once ("../ArrayPieceQuantik.php");
-    require_once ("../PieceQuantik.php");
-    require_once ("../PlateauQuantik.php");
-    require_once ("../ActionQuantik.php");
+    require_once("./metier/FonctionsUtiles.php");
+    require_once("./metier/ArrayPieceQuantik.php");
+    require_once("./metier/PieceQuantik.php");
+    require_once("./metier/PlateauQuantik.php");
+    require_once("./metier/ActionQuantik.php");
 
     session_start();
     /*$_SESSION["plateau"] = new PlateauQuantik;

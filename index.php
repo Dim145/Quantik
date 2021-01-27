@@ -1,4 +1,5 @@
+<?php
 
-<html>
+    header("Location: SelectionPiece.php");
 
-</html>
+?>
