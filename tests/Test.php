@@ -2,9 +2,9 @@
     <head><title>Test</title></head>
     <body>
             <?php
-                include("../PlateauQuantik.php");
-                include("../PieceQuantik.php");
-                include("../ActionQuantik.php");
+                include("../metier/PlateauQuantik.php");
+                include("../metier/PieceQuantik.php");
+                include("../metier/ActionQuantik.php");
                 
                 $p  = new PlateauQuantik();
 

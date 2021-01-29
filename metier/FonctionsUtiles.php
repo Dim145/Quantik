@@ -1,5 +1,4 @@
 <?php
-    
 
     class FonctionsUtiles
     {
@@ -34,7 +33,7 @@
             $sRet = "<div>";
 
             for ( $cpt = 0; $cpt < $pieces->getTaille(); $cpt++ )
-                if($pieces->getPieceQuantik($cpt) == $pieceParam)
+                if($pieces->getPieceQuantik($cpt) === $pieceParam)
                     $sRet .= "<button type=\"submit\" class=\"btnSelection\" disabled>" . $pieces->getPieceQuantik($cpt) . "</button>";
                 else
                     if($isWhitePlay == true)
@@ -84,7 +83,7 @@
             {
                 for ($cptC = 0; $cptC < $plateau::NBCOLS; $cptC++)
                     /*in_array($piece, $plateau->getRow($cptR) , false) == false && in_array($piece,  $plateau->getCol($cptC), false) == false || */
-                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece) && $plateau->getPieces($cptR, $cptC) == PieceQuantik::initVoid())
+                    if((new ActionQuantik($plateau))->isValidPose($cptR, $cptC, $piece) && $plateau->getPieces($cptR, $cptC) === PieceQuantik::initVoid())
                         $sRet .= "<button type=\"submit\" name=\"select\" value=\"".($cptR."-".$cptC)."\" >" . $plateau->getPieces($cptR, $cptC) . "</button>";
                     else
                         $sRet .= "<button type=\"submit\" name=\"select\" disabled>" . $plateau->getPieces($cptR, $cptC) . "</button>";
@@ -158,18 +157,8 @@
             return $plateau;
         }
 
-        static function getPiecesFromString( string $toString ): ArrayPieceQuantik
-        {
-            $array = new ArrayPieceQuantik();
-
-
-
-            return $array;
-        }
-
-
         /**
-         * @return array
+         * @return PlateauQuantik
          */
         public static function getPlateau(): PlateauQuantik
         {
@@ -177,7 +166,7 @@
         }
 
         /**
-         * @param array $plateau
+         * @param PlateauQuantik $plateau
          */
         public static function setPlateau(PlateauQuantik $plateau): void
         {
@@ -185,7 +174,7 @@
         }
 
         /**
-         * @return array
+         * @return ArrayPieceQuantik
          */
         public static function getPb(): ArrayPieceQuantik
         {
@@ -193,7 +182,7 @@
         }
 
         /**
-         * @param array $pb
+         * @param ArrayPieceQuantik $pb
          */
         public static function setPb(ArrayPieceQuantik $pb): void
         {
@@ -201,7 +190,7 @@
         }
 
         /**
-         * @return array
+         * @return ArrayPieceQuantik
          */
         public static function getPn(): ArrayPieceQuantik
         {
@@ -209,7 +198,7 @@
         }
 
         /**
-         * @param array $pn
+         * @param ArrayPieceQuantik $pn
          */
         public static function setPn(ArrayPieceQuantik $pn): void
         {
@@ -286,4 +275,3 @@
     QUESTION 8
         On aurais un toolkit remplis de methode static => class utilitaire
     */
-?>

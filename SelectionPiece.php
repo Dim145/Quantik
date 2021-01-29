@@ -42,4 +42,3 @@
     echo FonctionsUtiles::getFormSelectionPiece(FonctionsUtiles::isWhitePlay() ? FonctionsUtiles::getPb() : FonctionsUtiles::getPn(), $_SESSION['isWhitePlay']);
     echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();
-?>

@@ -81,4 +81,3 @@
     echo FonctionsUtiles::getLienRecommencer();
     echo FonctionsUtiles::getFinHTML();
 
-?>
